@@ -3,6 +3,7 @@ const app = express();
 const router = express.Router();
 const path = require('path');
 const port = process.env.PORT || 3000;
+const { User, Reply, Category, Post } = require('../utils/seed.js');
 
 //body parsing middleware
 app.use(express.json());
@@ -16,4 +17,29 @@ app.get('/', (req, res, next) => {
 });
 app.use('/api', router);
 
+router.get('/posts', async (req, res, next) => {
+  try {
+    const posts = await Post.findAll({
+      include: [Reply, User, Category],
+    });
+    console.log(posts, 'posts including all');
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/posts', async (req, res, next) => {
+  try {
+    const data = req.body;
+    console.log(data, 'data from post');
+    const newPost = await Post.create({
+      userName: req.body.user - name,
+      text: req.body.text,
+      title: req.body.title,
+    });
+    res.status(201).send(newPost);
+  } catch (err) {
+    next(err);
+  }
+});
 app.listen(port, () => console.log(`app listening on port ${port}`));
