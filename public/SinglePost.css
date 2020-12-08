@@ -1,0 +1,18 @@
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+#single-post {
+  background-color: cornflowerblue;
+  border: 1px solid black;
+}
+
+#single-post textarea {
+  height: 50px;
+}

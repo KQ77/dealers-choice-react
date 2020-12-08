@@ -4,14 +4,16 @@ import PostForm from './PostForm';
 import Axios from 'axios';
 import PostList from './PostList';
 
-const posts = [
-  { text: 'baskdfjasdfasfsd', subject: 'funny', upvotes: 4, replies: [] },
-];
-
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { posts: [] };
+    this.state = {
+      posts: [],
+      postInfo: { userName: '', title: '', category: '', text: '' },
+    };
+    this.submitPost = this.submitPost.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
   async componentDidMount() {
     const posts = (await Axios.get('/api/posts')).data;
@@ -20,11 +22,33 @@ class App extends React.Component {
       this.setState({ posts: posts });
     }
   }
+  handleInputChange(e) {
+    const { value, name } = e.target;
+    const postInfo = { ...this.state.postInfo, ...{ [name]: value } };
+    this.setState({ postInfo: postInfo });
+  }
+  async submitPost() {
+    const body = this.state.postInfo;
+    const post = (await Axios.post('/api/posts', body)).data;
+    this.setState({ formActive: false });
+    console.log(post, 'post');
+  }
+  toggleForm() {
+    this.setState({ formActive: true });
+  }
   render() {
     return (
       <div id="main">
-        <button onClick={this.createPost}>+ Add New Post</button>
-        <PostForm />
+        <button onClick={this.toggleForm}>+ Add New Post</button>
+        {this.state.formActive ? (
+          <PostForm
+            active={this.state.formActive}
+            handleChange={this.handleInputChange}
+            onClick={this.submitPost}
+          />
+        ) : (
+          ''
+        )}
         <PostList posts={this.state.posts} />
       </div>
     );

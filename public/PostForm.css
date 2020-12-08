@@ -1,4 +1,4 @@
-form {
+#createPost {
   background-color: rgb(235, 68, 171);
   display: flex;
   flex-direction: column;

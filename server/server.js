@@ -34,9 +34,10 @@ router.post('/posts', async (req, res, next) => {
     const data = req.body;
     console.log(data, 'data from post');
     const newPost = await Post.create({
-      userName: req.body.user - name,
+      userName: req.body.userName,
       text: req.body.text,
       title: req.body.title,
+      category: req.body.categorys,
     });
     res.status(201).send(newPost);
   } catch (err) {
