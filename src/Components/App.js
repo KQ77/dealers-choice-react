@@ -46,7 +46,11 @@ class App extends React.Component {
     this.setState({ posts: updatedPosts });
   }
   async downvote(post) {
-    const updatedPosts = await Axios.put('/api/posts');
+    const updatedValues = { upvotes: post.upvotes - 1 };
+    const updatedPosts = (
+      await Axios.put(`/api/posts/${post.id}`, updatedValues)
+    ).data;
+    this.setState({ posts: updatedPosts });
   }
   render() {
     return (

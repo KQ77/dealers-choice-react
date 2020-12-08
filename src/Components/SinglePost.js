@@ -9,7 +9,7 @@ const SinglePost = (props) => {
         <div id="upvotes" className="column">
           <span onClick={() => props.upvote(post)}>^</span>
           <span>{post.upvotes}</span>
-          <span onClick={() => props.downVote(post)}>v</span>
+          <span onClick={() => props.downvote(post)}>v</span>
         </div>
         <div className="column">
           <p>
