@@ -7,9 +7,9 @@ const SinglePost = (props) => {
     <>
       <div id="single-post" className="row">
         <div id="upvotes" className="column">
-          <span>^</span>
+          <span onClick={() => props.upvote(post)}>^</span>
           <span>{post.upvotes}</span>
-          <span>v</span>
+          <span onClick={() => props.downVote(post)}>v</span>
         </div>
         <div className="column">
           <p>

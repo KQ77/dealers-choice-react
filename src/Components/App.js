@@ -14,11 +14,14 @@ class App extends React.Component {
     this.submitPost = this.submitPost.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
+    this.upvote = this.upvote.bind(this);
+    this.downvote = this.downvote.bind(this);
   }
   async componentDidMount() {
     const posts = (await Axios.get('/api/posts')).data;
     console.log(posts, 'posts');
     if (posts) {
+      posts.sort((a, b) => b.upvotes - a.upvotes);
       this.setState({ posts: posts });
     }
   }
@@ -31,10 +34,19 @@ class App extends React.Component {
     const body = this.state.postInfo;
     const post = (await Axios.post('/api/posts', body)).data;
     this.setState({ formActive: false });
-    console.log(post, 'post');
   }
   toggleForm() {
     this.setState({ formActive: true });
+  }
+  async upvote(post) {
+    const updatedValues = { upvotes: post.upvotes + 1 };
+    const updatedPosts = (
+      await Axios.put(`/api/posts/${post.id}`, updatedValues)
+    ).data;
+    this.setState({ posts: updatedPosts });
+  }
+  async downvote(post) {
+    const updatedPosts = await Axios.put('/api/posts');
   }
   render() {
     return (
@@ -49,7 +61,11 @@ class App extends React.Component {
         ) : (
           ''
         )}
-        <PostList posts={this.state.posts} />
+        <PostList
+          downvote={this.downvote}
+          upvote={this.upvote}
+          posts={this.state.posts}
+        />
       </div>
     );
   }

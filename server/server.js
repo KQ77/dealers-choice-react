@@ -22,7 +22,6 @@ router.get('/posts', async (req, res, next) => {
     const posts = await Post.findAll({
       include: [Reply, User],
     });
-    console.log(posts, 'posts including all');
     res.status(200).send(posts);
   } catch (err) {
     next(err);
@@ -32,7 +31,6 @@ router.get('/posts', async (req, res, next) => {
 router.post('/posts', async (req, res, next) => {
   try {
     const data = req.body;
-    console.log(data, 'data from post');
     const newPost = await Post.create({
       userName: req.body.userName,
       text: req.body.text,
@@ -40,6 +38,18 @@ router.post('/posts', async (req, res, next) => {
       category: req.body.categorys,
     });
     res.status(201).send(newPost);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/posts/:postId', async (req, res, next) => {
+  try {
+    const postToUpdate = await Post.findByPk(req.params.postId);
+    await postToUpdate.update(req.body);
+    console.log(postToUpdate, 'updated post?');
+    const updatedPosts = await Post.findAll({ include: [Reply, User] });
+    res.status(200).send(updatedPosts);
   } catch (err) {
     next(err);
   }

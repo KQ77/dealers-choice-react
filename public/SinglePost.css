@@ -16,3 +16,12 @@
 #single-post textarea {
   height: 50px;
 }
+
+span {
+  padding: 1rem;
+}
+
+span:hover {
+  cursor: default;
+  color: white;
+}

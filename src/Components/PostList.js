@@ -5,7 +5,12 @@ const PostList = (props) => {
   return (
     <div>
       {props.posts.map((post, idx) => (
-        <SinglePost key={idx} post={post} />
+        <SinglePost
+          downvote={props.downvote}
+          upvote={props.upvote}
+          key={idx}
+          post={post}
+        />
       ))}
     </div>
   );
