@@ -4,6 +4,8 @@ const conn = new Sequelize(
   { logging: true }
 );
 const { STRING, TEXT, DATE, UUID, INTEGER, UUIDV4 } = Sequelize;
+const { categoryData } = require('./categoryData');
+const { postData } = require('./postData');
 
 //define Models
 const User = conn.define('user', {
@@ -13,7 +15,7 @@ const User = conn.define('user', {
     defaultValue: UUIDV4,
   },
   userName: {
-    type: STRING, //varchar? limit?
+    type: STRING,
     unique: true,
   },
   password: {
@@ -33,11 +35,18 @@ const Post = conn.define('post', {
     type: TEXT,
   },
   title: {
-    type: STRING(20),
+    type: STRING,
   },
   upvotes: {
     type: INTEGER,
     defaultValue: 0,
+  },
+  category: {
+    type: STRING,
+  },
+  time: {
+    type: DATE,
+    defaultValue: Date.now(),
   },
 });
 
@@ -50,11 +59,11 @@ const Reply = conn.define('reply', {
     defaultValue: Date.now(),
   },
 });
-const Category = conn.define('topic', {
-  name: {
-    type: STRING,
-  },
-});
+// const Category = conn.define('category', {
+//   name: {
+//     type: STRING,
+//   },
+// });
 
 //define associations
 Post.belongsTo(User);
@@ -65,14 +74,16 @@ Reply.belongsTo(User);
 Reply.belongsTo(Post);
 Post.hasMany(Reply);
 
-Post.belongsTo(Category);
-Category.hasMany(Post);
+// Post.belongsTo(Category);
+// Category.hasMany(Post);
 
 //define syndAndSeed function
 const syncAndSeed = async () => {
   await conn.authenticate();
   await conn.sync({ force: true });
   console.log('DB authenticated!');
+  //   await Promise.all(categoryData.map((cat) => Category.create(cat)));
+  await Promise.all(postData.map((post) => Post.create(post)));
 };
 
-module.exports = { User, Post, Reply, Category, syncAndSeed };
+module.exports = { User, Post, Reply, syncAndSeed };

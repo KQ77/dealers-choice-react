@@ -1,12 +1,13 @@
 import React from 'react';
+import SinglePost from './SinglePost';
 
 const PostList = (props) => {
   return (
-    <>
-      {props.posts.map((post) => (
-        <SinglePost post={post} />
+    <div>
+      {props.posts.map((post, idx) => (
+        <SinglePost key={idx} post={post} />
       ))}
-    </>
+    </div>
   );
 };
 

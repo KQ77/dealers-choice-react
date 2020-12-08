@@ -1,19 +1,20 @@
 import React from 'react';
 
 const SinglePost = (props) => {
+  const post = props.post;
   return (
     <>
-      {props.posts.map((post, idx) => (
-        <div key={idx}>
-          <div>
-            <span>^</span>
-            <span>{post.upvotes}</span>
-            <span>v</span>
-          </div>
-          <p>{post.subject}</p>
-          <p>{post.text}</p>
+      <div>
+        <div>
+          <span>^</span>
+          <span>{post.upvotes}</span>
+          <span>v</span>
         </div>
-      ))}
+        <p>{post.title}</p>
+        <p>{post.text}</p>
+        <p>{post.time}</p>
+      </div>
+      )
     </>
   );
 };

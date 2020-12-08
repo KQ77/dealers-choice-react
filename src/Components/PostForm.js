@@ -16,6 +16,7 @@ const PostForm = (props) => {
         <option value="random">Random</option>
         <option value="coding">Coding</option>
         <option value="funny">Funny</option>
+        <option value="movies">Movies</option>
       </select>
       <label htmlFor="title">
         <span>* </span>title

@@ -3,7 +3,7 @@ const app = express();
 const router = express.Router();
 const path = require('path');
 const port = process.env.PORT || 3000;
-const { User, Reply, Category, Post } = require('../utils/seed.js');
+const { User, Reply, Post } = require('../utils/seed.js');
 
 //body parsing middleware
 app.use(express.json());
@@ -20,9 +20,10 @@ app.use('/api', router);
 router.get('/posts', async (req, res, next) => {
   try {
     const posts = await Post.findAll({
-      include: [Reply, User, Category],
+      include: [Reply, User],
     });
     console.log(posts, 'posts including all');
+    res.status(200).send(posts);
   } catch (err) {
     next(err);
   }
