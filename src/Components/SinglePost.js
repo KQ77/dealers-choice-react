@@ -34,7 +34,6 @@ const SinglePost = (props) => {
           <span onClick={props.toggleReplies} className="underline">
             replies
           </span>
-          {props.showReplies ? <ReplyList replies={post.replies} /> : ''}
         </div>
       </div>
     </>

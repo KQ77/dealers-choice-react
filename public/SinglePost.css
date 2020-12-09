@@ -18,16 +18,12 @@
   align-items: center;
   background-color: rgb(225, 238, 176);
   border: 1px solid black;
-  margin: 2rem auto;
+  /* margin: 2rem auto; */
 }
 
 #single-post textarea {
   height: 50px;
 }
-
-/* span {
-  padding: 1rem;
-} */
 
 #upvotes span {
   background-color: rgb(231, 37, 144);

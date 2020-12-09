@@ -1,5 +1,6 @@
 import React from 'react';
 import SinglePost from './SinglePost.js';
+import ReplyList from './ReplyList';
 
 const PostList = (props) => {
   return (
@@ -16,6 +17,9 @@ const PostList = (props) => {
             key={idx}
             post={post}
           />
+          <div className="column">
+            {props.showReplies ? <ReplyList replies={post.replies} /> : ''}
+          </div>
         </div>
       ))}
     </>
