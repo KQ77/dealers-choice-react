@@ -3,11 +3,13 @@ import PostForm from './PostForm.js';
 import Axios from 'axios';
 import PostList from './PostList.js';
 import '../../public/App.css';
+import Sidebar from './Sidebar.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      formActive: false,
       posts: [],
       selectedPost: '',
       postInfo: { userName: '', title: '', category: '', text: '' },
@@ -89,28 +91,27 @@ class App extends React.Component {
   render() {
     return (
       <div id="main">
-        <button className="new-post-button" onClick={this.toggleForm}>
+        {/* <button className="new-post-button" onClick={this.toggleForm}>
           + Add New Post
-        </button>
-        {this.state.formActive ? (
-          <PostForm
-            active={this.state.formActive}
-            handleChange={this.handleInputChange}
-            onClick={this.submitPost}
-          />
-        ) : (
-          ''
-        )}
-        <PostList
-          deletePost={this.deletePost}
-          selectedPost={this.state.selectedPost}
-          handleReplyClick={this.handleReplyClick}
-          addReply={this.addReply}
-          handleReplyChange={this.handleReply}
-          downvote={this.downvote}
-          upvote={this.upvote}
-          posts={this.state.posts}
+        </button> */}
+        <Sidebar
+          submitPost={this.submitPost}
+          handleInputChange={this.handleInputChange}
+          formActive={this.state.formActive}
+          toggleForm={this.toggleForm}
         />
+        <div id="all-post-container">
+          <PostList
+            deletePost={this.deletePost}
+            selectedPost={this.state.selectedPost}
+            handleReplyClick={this.handleReplyClick}
+            addReply={this.addReply}
+            handleReplyChange={this.handleReply}
+            downvote={this.downvote}
+            upvote={this.upvote}
+            posts={this.state.posts}
+          />
+        </div>
       </div>
     );
   }
