@@ -3,6 +3,7 @@ import '../../public/SinglePost.css';
 
 const SinglePost = (props) => {
   const post = props.post;
+  let time = post.time;
 
   return (
     <>
@@ -17,7 +18,7 @@ const SinglePost = (props) => {
             {post.title}{' '}
             <small>
               <span> by {post.userName} </span>
-              <span className="italic">{post.time} </span>
+              <span className="italic">{post.time}</span>
             </small>
           </p>
 
@@ -37,7 +38,14 @@ const SinglePost = (props) => {
             replies ({post.replies.length})
           </span>
         </div>
-        <button onClick={() => props.deletePost(post)}>Delete Post</button>
+        <div className="delete-button">
+          <button
+            className="delete-button"
+            onClick={() => props.deletePost(post)}
+          >
+            Delete Post
+          </button>
+        </div>
       </div>
     </>
   );

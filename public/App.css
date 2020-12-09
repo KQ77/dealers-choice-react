@@ -8,9 +8,9 @@
   background-color: rgb(109, 174, 238);
 }
 
-/* #all-post-container {
-  margin-left: 125px;
-} */
+#all-post-container {
+  width: 90%;
+}
 
 #main {
   display: flex;

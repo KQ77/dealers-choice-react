@@ -52,8 +52,8 @@ p.title span {
 }
 
 .post-details {
-  width: 40%;
-  background-color: rgb(71, 255, 102);
+  width: 85%;
+  background-color: rgb(197, 211, 200);
 }
 
 .underline {
@@ -68,4 +68,14 @@ div:hover {
 
 span.underline:hover {
   color: grey;
+}
+
+.delete-button {
+  align-self: flex-start;
+}
+
+.delete-button button {
+  background: rgb(172, 71, 71);
+  color: white;
+  padding: 0.5rem;
 }

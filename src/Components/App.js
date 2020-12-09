@@ -1,9 +1,9 @@
 import React from 'react';
-import PostForm from './PostForm.js';
 import Axios from 'axios';
 import PostList from './PostList.js';
 import '../../public/App.css';
 import Sidebar from './Sidebar.js';
+import Banner from './Banner.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -39,9 +39,10 @@ class App extends React.Component {
   }
   async submitPost() {
     const body = this.state.postInfo;
-    const posts = (await Axios.post('/api/posts', body)).data;
-    posts.sort((a, b) => b.upvotes - a.upvotes);
-    this.setState({ formActive: false });
+    const updatedPosts = (await Axios.post('/api/posts', body)).data;
+    console.log(updatedPosts, 'posts returned from submitting posts');
+    updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
+    this.setState({ formActive: false, posts: updatedPosts });
   }
   toggleForm() {
     this.setState({ formActive: true });
@@ -94,30 +95,32 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div id="main">
-        {/* <button className="new-post-button" onClick={this.toggleForm}>
-          + Add New Post
-        </button> */}
-        <Sidebar
-          submitPost={this.submitPost}
-          handleInputChange={this.handleInputChange}
-          formActive={this.state.formActive}
-          toggleForm={this.toggleForm}
-        />
-        <div id="all-post-container">
-          <PostList
-            collapse={this.collapse}
-            deletePost={this.deletePost}
-            selectedPost={this.state.selectedPost}
-            handleReplyClick={this.handleReplyClick}
-            addReply={this.addReply}
-            handleReplyChange={this.handleReply}
-            downvote={this.downvote}
-            upvote={this.upvote}
-            posts={this.state.posts}
-          />
+      <>
+        <div id="banner">
+          <Banner />
         </div>
-      </div>
+        <div id="main">
+          <Sidebar
+            submitPost={this.submitPost}
+            handleInputChange={this.handleInputChange}
+            formActive={this.state.formActive}
+            toggleForm={this.toggleForm}
+          />
+          <div id="all-post-container">
+            <PostList
+              collapse={this.collapse}
+              deletePost={this.deletePost}
+              selectedPost={this.state.selectedPost}
+              handleReplyClick={this.handleReplyClick}
+              addReply={this.addReply}
+              handleReplyChange={this.handleReply}
+              downvote={this.downvote}
+              upvote={this.upvote}
+              posts={this.state.posts}
+            />
+          </div>
+        </div>
+      </>
     );
   }
 }
