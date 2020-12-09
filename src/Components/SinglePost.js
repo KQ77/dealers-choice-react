@@ -34,7 +34,7 @@ const SinglePost = (props) => {
             onClick={() => props.handleReplyClick(post)}
             className="underline"
           >
-            replies
+            replies ({post.replies.length})
           </span>
         </div>
         <button onClick={() => props.deletePost(post)}>Delete Post</button>

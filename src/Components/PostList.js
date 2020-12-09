@@ -8,6 +8,7 @@ const PostList = (props) => {
       {props.posts.map((post, idx) => (
         <div key={idx}>
           <SinglePost
+            collapse={props.collapse}
             deletePost={props.deletePost}
             handleReplyClick={props.handleReplyClick}
             addReply={() => props.addReply(post)}
@@ -20,6 +21,7 @@ const PostList = (props) => {
           <div className="column">
             {props.selectedPost === post ? (
               <ReplyList
+                collapse={props.collapse}
                 handleReplyClick={props.handleReplyClick}
                 post={post}
                 replies={post.replies}

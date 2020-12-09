@@ -1,7 +1,13 @@
 #reply-list {
+  height: 10rem;
   background-color: yellow;
   border: 1px solid black;
-  width: 25%;
+  width: 60%;
   margin-left: 10%;
   overflow: scroll;
+}
+
+#single-reply {
+  background: rgb(156, 156, 202);
+  border: 2px solid rgb(255, 166, 0);
 }

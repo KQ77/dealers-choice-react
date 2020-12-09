@@ -23,6 +23,7 @@ class App extends React.Component {
     this.handleReply = this.handleReply.bind(this);
     this.handleReplyClick = this.handleReplyClick.bind(this);
     this.deletePost = this.deletePost.bind(this);
+    this.collapse = this.collapse.bind(this);
   }
   async componentDidMount() {
     const posts = (await Axios.get('/api/posts')).data;
@@ -46,11 +47,13 @@ class App extends React.Component {
     this.setState({ formActive: true });
   }
   handleReplyClick(singlePost) {
-    if (this.state.selectedPost.id) {
-      this.setState({ selectedPost: '' });
-    } else {
-      this.setState({ selectedPost: singlePost });
-    }
+    // if (this.state.selectedPost.id) {
+    //   this.setState({ selectedPost: '' });
+    // } else {
+    this.setState({ selectedPost: singlePost });
+  }
+  collapse() {
+    this.setState({ selectedPost: '' });
   }
   async deletePost(post) {
     const posts = (await Axios.delete(`/api/posts/${post.id}`)).data;
@@ -73,6 +76,7 @@ class App extends React.Component {
 
     this.setState({ posts: updatedPosts });
   }
+
   handleReply(e) {
     const { value } = e.target;
     this.setState({ currentReply: value });
@@ -102,6 +106,7 @@ class App extends React.Component {
         />
         <div id="all-post-container">
           <PostList
+            collapse={this.collapse}
             deletePost={this.deletePost}
             selectedPost={this.state.selectedPost}
             handleReplyClick={this.handleReplyClick}

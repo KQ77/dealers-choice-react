@@ -5,14 +5,13 @@ import '../../public/ReplyList.css';
 function ReplyList(props) {
   return (
     <div id="reply-list">
-      <button
-        className="collapse"
-        onClick={() => props.handleReplyClick(props.post)}
-      >
+      <button className="collapse" onClick={props.collapse}>
         collapse replies
       </button>
       {props.replies.map((reply, idx) => (
-        <SingleReply key={idx} reply={reply} />
+        <div key={idx} id="single-reply">
+          <SingleReply reply={reply} />
+        </div>
       ))}
     </div>
   );

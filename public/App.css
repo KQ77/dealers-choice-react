@@ -1,6 +1,5 @@
 .new-post-button {
   background: dodgerblue;
-  width: 10%;
   color: white;
   padding: 0.7rem;
 }
@@ -9,9 +8,9 @@
   background-color: rgb(109, 174, 238);
 }
 
-#all-post-container {
+/* #all-post-container {
   margin-left: 125px;
-}
+} */
 
 #main {
   display: flex;
