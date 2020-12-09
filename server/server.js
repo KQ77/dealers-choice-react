@@ -54,4 +54,15 @@ router.put('/posts/:postId', async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/posts/:postId/replies', async (req, res, next) => {
+  try {
+    console.log(req.body, 'req.body');
+    await Reply.create(req.body);
+    const posts = await Post.findAll({ include: [Reply, User] });
+    res.status(201).send(posts);
+  } catch (err) {
+    console.log(err);
+  }
+});
 app.listen(port, () => console.log(`app listening on port ${port}`));

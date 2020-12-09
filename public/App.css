@@ -1,0 +1,9 @@
+.new-post-button {
+  background: dodgerblue;
+  width: 10%;
+  color: white;
+}
+
+.new-post-button:hover {
+  background-color: rgb(109, 174, 238);
+}

@@ -3,6 +3,7 @@ const conn = new Sequelize(
   process.env.DATABASE_URL || 'postgres://localhost/discussion_board',
   { logging: true }
 );
+
 const { STRING, TEXT, DATE, UUID, INTEGER, UUIDV4 } = Sequelize;
 const { categoryData } = require('./categoryData');
 const { postData } = require('./postData');
@@ -53,6 +54,7 @@ const Post = conn.define('post', {
 const Reply = conn.define('reply', {
   text: {
     type: TEXT,
+    allowNull: false,
   },
   time: {
     type: DATE,

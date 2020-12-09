@@ -3,25 +3,73 @@
   flex-direction: column;
 }
 
+#upvotes {
+  background-color: turquoise;
+  margin-right: 1rem;
+  align-items: center;
+  padding: 0.5rem;
+}
 .row {
   display: flex;
   flex-direction: row;
 }
 
 #single-post {
-  background-color: cornflowerblue;
+  align-items: center;
+  background-color: rgb(225, 238, 176);
   border: 1px solid black;
+  margin: 2rem auto;
 }
 
 #single-post textarea {
   height: 50px;
 }
 
-span {
+/* span {
   padding: 1rem;
+} */
+
+#upvotes span {
+  background-color: rgb(231, 37, 144);
+  font-weight: bold;
+  padding: 0.2rem;
+}
+#upvotes span:hover {
+  color: grey;
 }
 
-span:hover {
+p.title {
+  color: blue;
+  font-size: 1.2rem;
+}
+
+p.title span {
+  color: grey;
+}
+
+.italic {
+  font-style: italic;
+}
+
+#reply-button {
+  margin: 0.2rem 0;
+  width: 15%;
+}
+
+.post-details {
+  background-color: rgb(71, 255, 102);
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+span:hover,
+p:hover,
+div:hover {
   cursor: default;
-  color: white;
+}
+
+span.underline:hover {
+  color: grey;
 }
