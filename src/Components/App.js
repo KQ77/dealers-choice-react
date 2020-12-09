@@ -20,10 +20,10 @@ class App extends React.Component {
     this.addReply = this.addReply.bind(this);
     this.handleReply = this.handleReply.bind(this);
     this.handleReplyClick = this.handleReplyClick.bind(this);
+    this.deletePost = this.deletePost.bind(this);
   }
   async componentDidMount() {
     const posts = (await Axios.get('/api/posts')).data;
-    console.log(posts, 'posts');
     if (posts) {
       posts.sort((a, b) => b.upvotes - a.upvotes);
       this.setState({ posts: posts });
@@ -49,6 +49,11 @@ class App extends React.Component {
     } else {
       this.setState({ selectedPost: singlePost });
     }
+  }
+  async deletePost(post) {
+    const posts = (await Axios.delete(`/api/posts/${post.id}`)).data;
+    console.log(posts, 'updated posts after deleting');
+    this.setState({ posts: posts });
   }
   async upvote(post) {
     const updatedValues = { upvotes: post.upvotes + 1 };
@@ -97,6 +102,7 @@ class App extends React.Component {
           ''
         )}
         <PostList
+          deletePost={this.deletePost}
           selectedPost={this.state.selectedPost}
           handleReplyClick={this.handleReplyClick}
           addReply={this.addReply}

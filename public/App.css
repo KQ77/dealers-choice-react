@@ -2,6 +2,7 @@
   background: dodgerblue;
   width: 10%;
   color: white;
+  padding: 0.7rem;
 }
 
 .new-post-button:hover {

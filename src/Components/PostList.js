@@ -8,6 +8,7 @@ const PostList = (props) => {
       {props.posts.map((post, idx) => (
         <div key={idx}>
           <SinglePost
+            deletePost={props.deletePost}
             handleReplyClick={props.handleReplyClick}
             addReply={() => props.addReply(post)}
             handleReplyChange={props.handleReplyChange}

@@ -30,7 +30,6 @@ router.get('/posts', async (req, res, next) => {
 
 router.post('/posts', async (req, res, next) => {
   try {
-    const data = req.body;
     const newPost = await Post.create({
       userName: req.body.userName,
       text: req.body.text,
@@ -55,6 +54,20 @@ router.put('/posts/:postId', async (req, res, next) => {
   }
 });
 
+router.delete('/posts/:postId', async (req, res, next) => {
+  try {
+    await Post.destroy({
+      where: {
+        id: req.params.postId,
+      },
+    });
+    const updatedPosts = await Post.findAll({ include: [Reply, User] });
+    res.status(200).send(updatedPosts);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/posts/:postId/replies', async (req, res, next) => {
   try {
     console.log(req.body, 'req.body');
@@ -65,4 +78,5 @@ router.post('/posts/:postId/replies', async (req, res, next) => {
     console.log(err);
   }
 });
+
 app.listen(port, () => console.log(`app listening on port ${port}`));

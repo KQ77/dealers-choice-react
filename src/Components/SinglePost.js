@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../public/SinglePost.css';
-import ReplyList from './ReplyList';
 
 const SinglePost = (props) => {
   const post = props.post;
@@ -38,6 +37,7 @@ const SinglePost = (props) => {
             replies
           </span>
         </div>
+        <button onClick={() => props.deletePost(post)}>Delete Post</button>
       </div>
     </>
   );
