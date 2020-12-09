@@ -18,7 +18,6 @@
   align-items: center;
   background-color: rgb(225, 238, 176);
   border: 1px solid black;
-  /* margin: 2rem auto; */
 }
 
 #single-post textarea {
@@ -53,6 +52,7 @@ p.title span {
 }
 
 .post-details {
+  width: 40%;
   background-color: rgb(71, 255, 102);
 }
 

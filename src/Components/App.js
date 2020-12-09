@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       posts: [],
+      selectedPost: '',
       postInfo: { userName: '', title: '', category: '', text: '' },
     };
     this.submitPost = this.submitPost.bind(this);
@@ -18,7 +19,7 @@ class App extends React.Component {
     this.downvote = this.downvote.bind(this);
     this.addReply = this.addReply.bind(this);
     this.handleReply = this.handleReply.bind(this);
-    this.toggleReplies = this.toggleReplies.bind(this);
+    this.handleReplyClick = this.handleReplyClick.bind(this);
   }
   async componentDidMount() {
     const posts = (await Axios.get('/api/posts')).data;
@@ -42,8 +43,12 @@ class App extends React.Component {
   toggleForm() {
     this.setState({ formActive: true });
   }
-  toggleReplies() {
-    this.setState({ showReplies: !this.state.showReplies });
+  handleReplyClick(singlePost) {
+    if (this.state.selectedPost.id) {
+      this.setState({ selectedPost: '' });
+    } else {
+      this.setState({ selectedPost: singlePost });
+    }
   }
   async upvote(post) {
     const updatedValues = { upvotes: post.upvotes + 1 };
@@ -73,7 +78,6 @@ class App extends React.Component {
         postId: id,
       })
     ).data;
-    console.log(posts, 'posts');
     posts.sort((a, b) => b.upvotes - a.upvotes);
     this.setState({ posts: posts, currentReply: '' });
   }
@@ -93,8 +97,8 @@ class App extends React.Component {
           ''
         )}
         <PostList
-          showReplies={this.state.showReplies}
-          toggleReplies={this.toggleReplies}
+          selectedPost={this.state.selectedPost}
+          handleReplyClick={this.handleReplyClick}
           addReply={this.addReply}
           handleReplyChange={this.handleReply}
           downvote={this.downvote}

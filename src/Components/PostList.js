@@ -8,8 +8,7 @@ const PostList = (props) => {
       {props.posts.map((post, idx) => (
         <div key={idx}>
           <SinglePost
-            showReplies={props.showReplies}
-            toggleReplies={props.toggleReplies}
+            handleReplyClick={props.handleReplyClick}
             addReply={() => props.addReply(post)}
             handleReplyChange={props.handleReplyChange}
             downvote={props.downvote}
@@ -18,7 +17,19 @@ const PostList = (props) => {
             post={post}
           />
           <div className="column">
-            {props.showReplies ? <ReplyList replies={post.replies} /> : ''}
+            {props.selectedPost === post ? (
+              <>
+                <span
+                  className="underline"
+                  onClick={() => props.handleReplyClick(post)}
+                >
+                  collapse replies
+                </span>
+                <ReplyList replies={post.replies} />
+              </>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       ))}

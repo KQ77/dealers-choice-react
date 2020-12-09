@@ -34,6 +34,7 @@ const Post = conn.define('post', {
   },
   text: {
     type: TEXT,
+    allowNull: true,
   },
   title: {
     type: STRING,

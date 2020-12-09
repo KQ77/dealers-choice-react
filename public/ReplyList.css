@@ -1,4 +1,7 @@
 #reply-list {
   background-color: yellow;
   border: 1px solid black;
+  width: 25%;
+  margin-left: 10%;
+  overflow: scroll;
 }

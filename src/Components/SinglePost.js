@@ -31,7 +31,10 @@ const SinglePost = (props) => {
           <button id="reply-button" onClick={() => props.addReply(post)}>
             Reply
           </button>
-          <span onClick={props.toggleReplies} className="underline">
+          <span
+            onClick={() => props.handleReplyClick(post)}
+            className="underline"
+          >
             replies
           </span>
         </div>
