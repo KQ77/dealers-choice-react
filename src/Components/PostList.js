@@ -19,15 +19,11 @@ const PostList = (props) => {
           />
           <div className="column">
             {props.selectedPost === post ? (
-              <>
-                <span
-                  className="underline"
-                  onClick={() => props.handleReplyClick(post)}
-                >
-                  collapse replies
-                </span>
-                <ReplyList replies={post.replies} />
-              </>
+              <ReplyList
+                handleReplyClick={props.handleReplyClick}
+                post={post}
+                replies={post.replies}
+              />
             ) : (
               ''
             )}
