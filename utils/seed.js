@@ -1,3 +1,4 @@
+const { DATEONLY } = require('sequelize');
 const Sequelize = require('sequelize');
 const conn = new Sequelize(
   process.env.DATABASE_URL || 'postgres://localhost/discussion_board',
@@ -47,7 +48,7 @@ const Post = conn.define('post', {
     type: STRING,
   },
   time: {
-    type: DATE,
+    type: DATEONLY,
     defaultValue: Date.now(),
   },
 });

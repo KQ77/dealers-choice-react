@@ -3,10 +3,9 @@ import '../../public/SingleReply.css';
 
 const SingleReply = (props) => {
   return (
-    <>
+    <div id="single-reply">
       <p>{props.reply.text}</p>
-      <button onClick={props.removeReply}> -</button>
-    </>
+    </div>
   );
 };
 

@@ -5,15 +5,13 @@ import '../../public/ReplyList.css';
 function ReplyList(props) {
   return (
     <div id="reply-list">
-      <button className="collapse" onClick={props.collapse}>
-        collapse replies
-      </button>
+      <span className="collapse" onClick={props.collapse}>
+        [- collapse ]
+      </span>
       {props.replies.map((reply, idx) => (
-        <div key={idx} id="single-reply">
-          <SingleReply
-            removeReply={() => props.removeReply(reply)}
-            reply={reply}
-          />
+        <div id="reply" key={idx}>
+          <SingleReply reply={reply} />
+          <button onClick={() => props.removeReply(reply)}> - remove</button>
         </div>
       ))}
     </div>
