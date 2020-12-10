@@ -1,4 +1,14 @@
 #banner {
-  height: 5rem;
+  height: 20rem;
   background-color: rgb(240, 125, 240);
+}
+
+#banner h1 {
+  color: white;
+  font-family: cursive;
+  font-size: 4rem;
+  position: absolute;
+  font-weight: 200;
+  left: 20%;
+  top: 15%;
 }

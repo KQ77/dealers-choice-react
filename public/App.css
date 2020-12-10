@@ -1,11 +1,11 @@
 .new-post-button {
-  background: dodgerblue;
-  color: white;
+  background: #f4f4f4;
+  color: #041121;
   padding: 0.7rem;
 }
 
 .new-post-button:hover {
-  background-color: rgb(109, 174, 238);
+  background-color: rgb(166, 166, 206);
 }
 
 #all-post-container {

@@ -4,7 +4,6 @@
 }
 
 #upvotes {
-  background-color: turquoise;
   margin-right: 1rem;
   align-items: center;
   padding: 0.5rem;
@@ -15,17 +14,21 @@
 }
 
 #single-post {
+  justify-content: center;
+  border-radius: 11px;
+  margin: 0.3rem auto;
   align-items: center;
-  background-color: rgb(225, 238, 176);
-  border: 1px solid black;
+  background-color: #f4f4f4;
+  border: 1px solid #a8943d;
 }
 
 #single-post textarea {
   height: 50px;
+  width: 40%;
 }
 
 #upvotes span {
-  background-color: rgb(231, 37, 144);
+  font-size: 1.2rem;
   font-weight: bold;
   padding: 0.2rem;
 }
@@ -34,8 +37,10 @@
 }
 
 p.title {
-  color: blue;
-  font-size: 1.2rem;
+  font-weight: bold;
+  color: #041121;
+  margin: 0.2rem;
+  font-size: 1.4rem;
 }
 
 p.title span {
@@ -53,7 +58,7 @@ p.title span {
 
 .post-details {
   width: 85%;
-  background-color: rgb(197, 211, 200);
+  background-color: #f4f4f4;
 }
 
 .underline {
@@ -75,7 +80,7 @@ span.underline:hover {
 }
 
 .delete-button button {
-  background: rgb(172, 71, 71);
+  background: #0b2647;
   color: white;
   padding: 0.5rem;
 }

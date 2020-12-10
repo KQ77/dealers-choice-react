@@ -14,13 +14,13 @@ const SinglePost = (props) => {
           <span onClick={() => props.downvote(post)}>v</span>
         </div>
         <div className="post-details column">
-          <p className="title">
-            {post.title}{' '}
+          <p className="title">Title: {post.title} </p>
+          <div className="row">
             <small>
+              <span className="italic">submitted {post.time}</span>
               <span> by {post.userName} </span>
-              <span className="italic">{post.time}</span>
             </small>
-          </p>
+          </div>
 
           <p>{post.text}</p>
           <textarea
