@@ -16,7 +16,7 @@ const PostForm = (props) => {
       </div>
       <select onChange={props.handleChange} name="category" id="category">
         <option value="">--select category--</option>
-        <option value="questions">Q & A</option>
+        <option value="Q&A">Q & A</option>
         <option value="animals">Animals</option>
         <option value="politics">Politics</option>
         <option value="random">Random</option>

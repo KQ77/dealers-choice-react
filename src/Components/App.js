@@ -14,7 +14,15 @@ class App extends React.Component {
       posts: [],
       selectedPost: '',
       postInfo: { userName: '', title: '', category: '', text: '' },
-      categories: ['random', 'animals', 'funny', 'movies', 'coding', 'Q&A'],
+      categories: [
+        'politics',
+        'random',
+        'animals',
+        'funny',
+        'movies',
+        'coding',
+        'Q&A',
+      ],
     };
     this.submitPost = this.submitPost.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
