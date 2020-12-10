@@ -30,3 +30,8 @@
 .collapse:hover {
   color: rgb(252, 241, 241);
 }
+
+#reply > p {
+  font-size: 1.4rem;
+  font-style: italic;
+}

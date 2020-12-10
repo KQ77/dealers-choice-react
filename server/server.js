@@ -34,7 +34,7 @@ router.post('/posts', async (req, res, next) => {
       userName: req.body.userName,
       text: req.body.text,
       title: req.body.title,
-      category: req.body.categorys,
+      category: req.body.category,
     });
     console.log(newPost, 'new post');
     const updatedPosts = await Post.findAll({ include: [Reply, User] });

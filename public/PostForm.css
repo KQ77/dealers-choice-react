@@ -1,5 +1,5 @@
 #post-form > div {
-  background-color: rgb(151, 212, 240);
+  background-color: #c1d6f0;
   display: flex;
   flex-direction: column;
   align-items: space-between;
@@ -30,7 +30,7 @@ input.submit:hover {
   position: absolute;
   top: 22rem;
   left: 12rem;
-  border: 2px solid navy;
+  border: 2px solid rgb(4, 4, 66);
 }
 
 .inactive {

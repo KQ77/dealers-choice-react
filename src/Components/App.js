@@ -14,6 +14,7 @@ class App extends React.Component {
       posts: [],
       selectedPost: '',
       postInfo: { userName: '', title: '', category: '', text: '' },
+      categories: ['random', 'animals', 'funny', 'movies', 'coding', 'Q&A'],
     };
     this.submitPost = this.submitPost.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -93,15 +94,15 @@ class App extends React.Component {
     this.setState({ posts: updatedPosts });
   }
 
-  handleFilterSelect(e) {
+  async handleFilterSelect(e) {
     const { value } = e.target;
-    console.log(this.state.posts, 'this.state.posts');
-    const { posts } = this.state;
-    if (value === 'popular') {
-      posts.sort((a, b) => b.upvotes - a.upvotes);
+    //value will equal the category
+    let posts = (await Axios.get('/api/posts')).data;
+
+    if (value !== 'all') {
+      posts = posts.filter((post) => post.category === value);
       this.setState({ posts: posts });
-    } else if (value === 'latest') {
-      posts.sort((a, b) => b.time - a.time);
+    } else {
       this.setState({ posts: posts });
     }
   }
@@ -144,6 +145,7 @@ class App extends React.Component {
         </div>
         <div id="main">
           <Sidebar
+            categories={this.state.categories}
             handleFilterSelect={this.handleFilterSelect}
             submitPost={this.submitPost}
             handleInputChange={this.handleInputChange}

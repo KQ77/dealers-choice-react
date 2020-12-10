@@ -6,14 +6,14 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div>
-        Filter By:{' '}
+        Filter By Category{' '}
         <select name="filter" onChange={props.handleFilterSelect}>
-          <option name="popular" value="popular">
-            Popular
-          </option>
-          <option name="latest" value="latest">
-            Latest
-          </option>
+          <option value="all">--show all--</option>
+          {props.categories.map((cat, idx) => (
+            <option key={idx} name={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
         </select>
       </div>
       <button className="new-post-button" onClick={props.toggleForm}>
