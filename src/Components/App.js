@@ -24,6 +24,7 @@ class App extends React.Component {
     this.handleReplyClick = this.handleReplyClick.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.collapse = this.collapse.bind(this);
+    this.handleFilterSelect = this.handleFilterSelect.bind(this);
   }
   async componentDidMount() {
     const posts = (await Axios.get('/api/posts')).data;
@@ -45,7 +46,7 @@ class App extends React.Component {
     this.setState({ formActive: false, posts: updatedPosts });
   }
   toggleForm() {
-    this.setState({ formActive: true });
+    this.setState({ formActive: !this.state.formActive });
   }
   handleReplyClick(singlePost) {
     // if (this.state.selectedPost.id) {
@@ -66,6 +67,7 @@ class App extends React.Component {
     const updatedPosts = (
       await Axios.put(`/api/posts/${post.id}`, updatedValues)
     ).data;
+    updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
     this.setState({ posts: updatedPosts });
   }
   async downvote(post) {
@@ -76,6 +78,18 @@ class App extends React.Component {
     updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
 
     this.setState({ posts: updatedPosts });
+  }
+  handleFilterSelect(e) {
+    const { value } = e.target;
+    console.log(this.state.posts, 'this.state.posts');
+    const { posts } = this.state;
+    if (value === 'popular') {
+      posts.sort((a, b) => b.upvotes - a.upvotes);
+      this.setState({ posts: posts });
+    } else if (value-- - 'latest') {
+      posts.sort((a, b) => b.time - a.time);
+      this.setState({ posts: posts });
+    }
   }
 
   handleReply(e) {
@@ -101,6 +115,7 @@ class App extends React.Component {
         </div>
         <div id="main">
           <Sidebar
+            handleFilterSelect={this.handleFilterSelect}
             submitPost={this.submitPost}
             handleInputChange={this.handleInputChange}
             formActive={this.state.formActive}

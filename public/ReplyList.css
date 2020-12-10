@@ -1,6 +1,6 @@
 #reply-list {
   height: 10rem;
-  background-color: yellow;
+  background-color: #0b2647;
   border: 1px solid black;
   width: 60%;
   margin-left: 10%;
@@ -8,6 +8,8 @@
 }
 
 #single-reply {
-  background: rgb(156, 156, 202);
-  border: 2px solid rgb(255, 166, 0);
+  margin: 1rem auto;
+  background: #e9e8e8;
+  border: 0.5px solid #a8943d;
+  border-radius: 11px;
 }
