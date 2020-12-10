@@ -1,8 +1,8 @@
 {
-  "name": "full-stack-demo",
+  "name": "fullstack-discussion",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
     "heroku-postbuild": "webpack -p",
