@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "heroku-postbuild": "webpack -p",
+    "heroku-postbuild": "webpack",
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
     "start:dev": "npm run build:dev & nodemon server/server.js --ignore dist/ --ignore src/"
