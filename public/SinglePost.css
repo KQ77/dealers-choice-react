@@ -28,6 +28,10 @@
   width: 40%;
 }
 
+p.category > span {
+  background: #0b2647;
+  color: rgb(172, 80, 5);
+}
 #upvotes span {
   font-size: 1.2rem;
   font-weight: bold;
@@ -87,4 +91,8 @@ span.underline:hover {
 }
 span.time {
   color: rgb(172, 80, 5);
+}
+
+p {
+  margin: 0.2rem;
 }

@@ -15,6 +15,9 @@ const SinglePost = (props) => {
         </div>
         <div className="post-details column">
           <p className="title">Title: {post.title} </p>
+          <p className="category">
+            <span>{post.category}</span>
+          </p>
           <div className="row">
             <small>
               <span className="time italic">submitted {post.time}</span>

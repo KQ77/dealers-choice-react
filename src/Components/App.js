@@ -13,6 +13,7 @@ class App extends React.Component {
       formActive: false,
       posts: [],
       selectedPost: '',
+      //formData: { text: '', category: '', title: '', userName: '' },
       postInfo: { userName: '', title: '', category: '', text: '' },
     };
     this.submitPost = this.submitPost.bind(this);
@@ -35,32 +36,32 @@ class App extends React.Component {
       this.setState({ posts: posts });
     }
   }
+
+  //FORM //
   handleInputChange(e) {
     const { value, name } = e.target;
     const postInfo = { ...this.state.postInfo, ...{ [name]: value } };
     this.setState({ postInfo: postInfo });
   }
+
   async submitPost() {
     const body = this.state.postInfo;
     const updatedPosts = (await Axios.post('/api/posts', body)).data;
     console.log(updatedPosts, 'posts returned from submitting posts');
     updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
-    this.setState({ formActive: false, posts: updatedPosts });
+    this.setState({ formActive: false, posts: updatedPosts, postInfo: {} });
   }
+
   toggleForm() {
     this.setState({ formActive: !this.state.formActive });
   }
-  handleReplyClick(singlePost) {
-    this.setState({ selectedPost: singlePost });
-  }
-  collapse() {
-    this.setState({ selectedPost: '' });
-  }
+
   async deletePost(post) {
     const posts = (await Axios.delete(`/api/posts/${post.id}`)).data;
     console.log(posts, 'updated posts after deleting');
     this.setState({ posts: posts });
   }
+  //upvotes and downvotes //
   async upvote(post) {
     const updatedValues = { upvotes: post.upvotes + 1 };
     const updatedPosts = (
@@ -69,6 +70,7 @@ class App extends React.Component {
     updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
     this.setState({ posts: updatedPosts });
   }
+
   async downvote(post) {
     const updatedValues = { upvotes: post.upvotes - 1 };
     const updatedPosts = (
@@ -78,6 +80,7 @@ class App extends React.Component {
 
     this.setState({ posts: updatedPosts });
   }
+
   handleFilterSelect(e) {
     const { value } = e.target;
     console.log(this.state.posts, 'this.state.posts');
@@ -90,6 +93,8 @@ class App extends React.Component {
       this.setState({ posts: posts });
     }
   }
+
+  //handling reply section //
   removeReply(reply) {}
   handleReply(e) {
     let { value } = e.target;
@@ -105,6 +110,12 @@ class App extends React.Component {
     ).data;
     posts.sort((a, b) => b.upvotes - a.upvotes);
     this.setState({ posts: posts, currentReply: '' });
+  }
+  handleReplyClick(singlePost) {
+    this.setState({ selectedPost: singlePost });
+  }
+  collapse() {
+    this.setState({ selectedPost: '' });
   }
   render() {
     return (
@@ -123,8 +134,9 @@ class App extends React.Component {
           <div id="post-form">
             {this.state.formActive ? (
               <PostForm
-                handleChange={this.state.handleInputChange}
-                onClick={this.state.submitPost}
+                formData={this.state.formData}
+                handleChange={this.handleInputChange}
+                onClick={this.submitPost}
               />
             ) : (
               ''

@@ -7,7 +7,12 @@ const PostForm = (props) => {
       <h2>Create New Post</h2>
       <div className="userName row">
         <label htmlFor="user-name">User Name</label>
-        <input onChange={props.handleChange} id="user-name" name="userName" />
+        <input
+          type="text"
+          onChange={props.handleChange}
+          id="user-name"
+          name="userName"
+        />
       </div>
       <select onChange={props.handleChange} name="category" id="category">
         <option value="">--select category--</option>
