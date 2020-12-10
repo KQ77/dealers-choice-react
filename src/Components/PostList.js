@@ -21,6 +21,7 @@ const PostList = (props) => {
           <div className="column">
             {props.selectedPost === post ? (
               <ReplyList
+                removeReply={props.removeReply}
                 collapse={props.collapse}
                 handleReplyClick={props.handleReplyClick}
                 post={post}

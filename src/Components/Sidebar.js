@@ -15,21 +15,10 @@ const Sidebar = (props) => {
             Latest
           </option>
         </select>
-        <span className="underline">latest</span>
-        <span className="underline"></span>
       </div>
       <button className="new-post-button" onClick={props.toggleForm}>
         + Add New Post
       </button>
-      {props.formActive ? (
-        <PostForm
-          active={props.formActive}
-          handleChange={props.handleInputChange}
-          onClick={props.submitPost}
-        />
-      ) : (
-        ''
-      )}
     </div>
   );
 };

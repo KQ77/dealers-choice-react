@@ -11,6 +11,7 @@
 .row {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 #single-post {
@@ -83,4 +84,7 @@ span.underline:hover {
   background: #0b2647;
   color: white;
   padding: 0.5rem;
+}
+span.time {
+  color: rgb(172, 80, 5);
 }

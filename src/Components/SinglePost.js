@@ -17,7 +17,7 @@ const SinglePost = (props) => {
           <p className="title">Title: {post.title} </p>
           <div className="row">
             <small>
-              <span className="italic">submitted {post.time}</span>
+              <span className="time italic">submitted {post.time}</span>
               <span> by {post.userName} </span>
             </small>
           </div>

@@ -4,6 +4,7 @@ import PostList from './PostList.js';
 import '../../public/App.css';
 import Sidebar from './Sidebar.js';
 import Banner from './Banner.js';
+import PostForm from './PostForm';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class App extends React.Component {
     this.deletePost = this.deletePost.bind(this);
     this.collapse = this.collapse.bind(this);
     this.handleFilterSelect = this.handleFilterSelect.bind(this);
+    this.removeReply = this.removeReply.bind(this);
   }
   async componentDidMount() {
     const posts = (await Axios.get('/api/posts')).data;
@@ -49,9 +51,6 @@ class App extends React.Component {
     this.setState({ formActive: !this.state.formActive });
   }
   handleReplyClick(singlePost) {
-    // if (this.state.selectedPost.id) {
-    //   this.setState({ selectedPost: '' });
-    // } else {
     this.setState({ selectedPost: singlePost });
   }
   collapse() {
@@ -86,14 +85,14 @@ class App extends React.Component {
     if (value === 'popular') {
       posts.sort((a, b) => b.upvotes - a.upvotes);
       this.setState({ posts: posts });
-    } else if (value-- - 'latest') {
+    } else if (value === 'latest') {
       posts.sort((a, b) => b.time - a.time);
       this.setState({ posts: posts });
     }
   }
-
+  removeReply(reply) {}
   handleReply(e) {
-    const { value } = e.target;
+    let { value } = e.target;
     this.setState({ currentReply: value });
   }
   async addReply(post) {
@@ -121,8 +120,19 @@ class App extends React.Component {
             formActive={this.state.formActive}
             toggleForm={this.toggleForm}
           />
+          <div id="post-form">
+            {this.state.formActive ? (
+              <PostForm
+                handleChange={this.state.handleInputChange}
+                onClick={this.state.submitPost}
+              />
+            ) : (
+              ''
+            )}
+          </div>
           <div id="all-post-container">
             <PostList
+              removeReply={this.removeReply}
               collapse={this.collapse}
               deletePost={this.deletePost}
               selectedPost={this.state.selectedPost}

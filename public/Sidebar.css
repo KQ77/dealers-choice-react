@@ -4,3 +4,7 @@
   text-align: center;
   color: white;
 }
+
+.sidebar button {
+  margin: 2rem auto;
+}

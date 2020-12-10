@@ -10,7 +10,7 @@ function ReplyList(props) {
       </button>
       {props.replies.map((reply, idx) => (
         <div key={idx} id="single-reply">
-          <SingleReply reply={reply} />
+          <SingleReply removeReply={props.removeReply(reply)} reply={reply} />
         </div>
       ))}
     </div>
