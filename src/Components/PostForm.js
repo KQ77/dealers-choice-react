@@ -41,6 +41,9 @@ const PostForm = (props) => {
         placeholder="add details"
         id="text"
       />
+      <span className={props.error ? 'active red' : 'inactive red'}>
+        * please fill out all fields
+      </span>
       <button
         onClick={props.onClick}
         className="submit"

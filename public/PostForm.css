@@ -21,7 +21,8 @@ button.submit {
 input.submit:hover {
   background-color: lightgray;
 }
-#createPost span {
+#createPost span,
+.red {
   color: red;
 }
 
@@ -30,4 +31,8 @@ input.submit:hover {
   top: 22rem;
   left: 12rem;
   border: 2px solid navy;
+}
+
+.inactive {
+  display: none;
 }

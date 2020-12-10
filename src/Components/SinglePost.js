@@ -3,7 +3,6 @@ import '../../public/SinglePost.css';
 
 const SinglePost = (props) => {
   const post = props.post;
-  let time = post.time;
 
   return (
     <>
@@ -27,6 +26,7 @@ const SinglePost = (props) => {
 
           <p>{post.text}</p>
           <textarea
+            value={props.replyFormData}
             onChange={props.handleReplyChange}
             type="text"
             placeholder="add a reply..."

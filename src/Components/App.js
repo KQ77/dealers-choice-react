@@ -13,7 +13,6 @@ class App extends React.Component {
       formActive: false,
       posts: [],
       selectedPost: '',
-      //formData: { text: '', category: '', title: '', userName: '' },
       postInfo: { userName: '', title: '', category: '', text: '' },
     };
     this.submitPost = this.submitPost.bind(this);
@@ -36,7 +35,9 @@ class App extends React.Component {
       this.setState({ posts: posts });
     }
   }
-
+  // async componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.posts !== )
+  // }
   //FORM //
   handleInputChange(e) {
     const { value, name } = e.target;
@@ -46,10 +47,21 @@ class App extends React.Component {
 
   async submitPost() {
     const body = this.state.postInfo;
-    const updatedPosts = (await Axios.post('/api/posts', body)).data;
-    console.log(updatedPosts, 'posts returned from submitting posts');
-    updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
-    this.setState({ formActive: false, posts: updatedPosts, postInfo: {} });
+    console.log(body, 'body');
+    const { userName, title, text, category } = body;
+    if (!category || userName === '' || text === '' || title === '') {
+      this.setState({ formError: true, formActive: true });
+    } else {
+      const updatedPosts = (await Axios.post('/api/posts', body)).data;
+      console.log(updatedPosts, 'posts returned from submitting posts');
+      updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
+      this.setState({
+        formError: false,
+        formActive: false,
+        posts: updatedPosts,
+        postInfo: {},
+      });
+    }
   }
 
   toggleForm() {
@@ -95,7 +107,14 @@ class App extends React.Component {
   }
 
   //handling reply section //
-  removeReply(reply) {}
+  async removeReply(reply) {
+    await Axios.delete(`/api/replies/${reply.id}`);
+    const updatedPosts = (await Axios.get('/api/posts')).data;
+    console.log(updatedPosts, 'updated posts');
+    this.setState({
+      posts: updatedPosts,
+    });
+  }
   handleReply(e) {
     let { value } = e.target;
     this.setState({ currentReply: value });
@@ -134,6 +153,7 @@ class App extends React.Component {
           <div id="post-form">
             {this.state.formActive ? (
               <PostForm
+                error={this.state.formError}
                 formData={this.state.formData}
                 handleChange={this.handleInputChange}
                 onClick={this.submitPost}
@@ -144,6 +164,7 @@ class App extends React.Component {
           </div>
           <div id="all-post-container">
             <PostList
+              replyFormData={this.state.currentReply}
               removeReply={this.removeReply}
               collapse={this.collapse}
               deletePost={this.deletePost}

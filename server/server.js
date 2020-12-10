@@ -80,5 +80,19 @@ router.post('/posts/:postId/replies', async (req, res, next) => {
     console.log(err);
   }
 });
-
+// reply routes
+router.delete('/replies/:replyId', async (req, res, next) => {
+  try {
+    const replyToDelete = await Reply.findByPk(req.params.replyId);
+    if (replyToDelete) {
+      console.log(replyToDelete, 'reply to delete');
+      await replyToDelete.destroy();
+      res.status(204).send();
+    } else {
+      res.status(404).send();
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 app.listen(port, () => console.log(`app listening on port ${port}`));
