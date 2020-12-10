@@ -63,11 +63,6 @@ const Reply = conn.define('reply', {
     defaultValue: Date.now(),
   },
 });
-// const Category = conn.define('category', {
-//   name: {
-//     type: STRING,
-//   },
-// });
 
 //define associations
 Post.belongsTo(User);
@@ -78,15 +73,11 @@ Reply.belongsTo(User);
 Reply.belongsTo(Post);
 Post.hasMany(Reply);
 
-// Post.belongsTo(Category);
-// Category.hasMany(Post);
-
 //define syndAndSeed function
 const syncAndSeed = async () => {
   await conn.authenticate();
   await conn.sync({ force: true });
   console.log('DB authenticated!');
-  //   await Promise.all(categoryData.map((cat) => Category.create(cat)));
   await Promise.all(postData.map((post) => Post.create(post)));
 };
 

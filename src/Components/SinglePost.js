@@ -14,17 +14,18 @@ const SinglePost = (props) => {
         </div>
         <div className="post-details column">
           <p className="title">Title: {post.title} </p>
-          <p className="category">
-            <span>{post.category}</span>
-          </p>
+
           <div className="row">
+            <p className="category">
+              <span>{post.category}</span>
+            </p>
             <small>
               <span className="time italic">submitted {post.time}</span>
               <span> by {post.userName} </span>
             </small>
           </div>
 
-          <p>{post.text}</p>
+          <p className="text">{post.text}</p>
           <textarea
             value={props.replyFormData}
             onChange={props.handleReplyChange}

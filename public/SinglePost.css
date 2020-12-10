@@ -97,3 +97,7 @@ span.time {
 p {
   margin: 0.2rem;
 }
+
+p.text {
+  font-size: 1.2rem;
+}
