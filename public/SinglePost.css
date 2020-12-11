@@ -92,6 +92,7 @@ span.underline:hover {
 }
 span.time {
   color: rgb(172, 80, 5);
+  font-weight: bold;
 }
 
 p {

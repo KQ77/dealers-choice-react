@@ -3,11 +3,19 @@ import SinglePost from './SinglePost.js';
 import ReplyList from './ReplyList';
 
 const PostList = (props) => {
+  let posts = props.posts;
+  console.log(posts, 'posts');
+  console.log(props.filter, 'props.filter');
+  if (props.filter !== 'all') {
+    posts = posts.filter((post) => post.category === props.filter);
+  }
+
   return (
     <>
-      {props.posts.map((post, idx) => (
+      {posts.map((post, idx) => (
         <div key={idx}>
           <SinglePost
+            selectedPostId={props.selectedPostId}
             replyFormData={props.replyFormData}
             collapse={props.collapse}
             deletePost={props.deletePost}

@@ -27,7 +27,10 @@ const SinglePost = (props) => {
 
           <p className="text">{post.text}</p>
           <textarea
-            value={props.replyFormData}
+            id={post.id} //5
+            value={
+              props.selectedPostId * 1 === post.id ? props.replyFormData : ''
+            }
             onChange={props.handleReplyChange}
             type="text"
             placeholder="add a reply..."

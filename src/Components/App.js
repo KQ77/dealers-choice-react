@@ -30,7 +30,7 @@ class App extends React.Component {
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
     this.addReply = this.addReply.bind(this);
-    this.handleReply = this.handleReply.bind(this);
+    this.handleReplyChange = this.handleReplyChange.bind(this);
     this.handleReplyClick = this.handleReplyClick.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.collapse = this.collapse.bind(this);
@@ -105,14 +105,14 @@ class App extends React.Component {
   async handleFilterSelect(e) {
     const { value } = e.target;
     //value will equal the category
-    let posts = (await Axios.get('/api/posts')).data;
+    // let posts = (await Axios.get('/api/posts')).data;
 
-    if (value !== 'all') {
-      posts = posts.filter((post) => post.category === value);
-      this.setState({ posts: posts });
-    } else {
-      this.setState({ posts: posts });
-    }
+    // if (value !== 'all') {
+    //   posts = posts.filter((post) => post.category === value);
+    //   this.setState({ posts: posts });
+    // } else {
+    this.setState({ filter: value, posts: [...this.state.posts] });
+    // }
   }
 
   //handling reply section //
@@ -124,9 +124,11 @@ class App extends React.Component {
       posts: updatedPosts,
     });
   }
-  handleReply(e) {
-    let { value } = e.target;
-    this.setState({ currentReply: value });
+  handleReplyChange(e) {
+    let { value, id } = e.target;
+    console.log(id, 'e.target.id -should be same as post.id');
+
+    this.setState({ currentReply: value, selectedPostId: id });
   }
   async addReply(post) {
     const id = post.id;
@@ -163,6 +165,7 @@ class App extends React.Component {
           <div id="post-form">
             {this.state.formActive ? (
               <PostForm
+                categories={this.state.categories}
                 error={this.state.formError}
                 formData={this.state.formData}
                 handleChange={this.handleInputChange}
@@ -174,14 +177,16 @@ class App extends React.Component {
           </div>
           <div id="all-post-container">
             <PostList
+              filter={this.state.filter}
               replyFormData={this.state.currentReply}
+              selectedPostId={this.state.selectedPostId}
               removeReply={this.removeReply}
               collapse={this.collapse}
               deletePost={this.deletePost}
               selectedPost={this.state.selectedPost}
               handleReplyClick={this.handleReplyClick}
               addReply={this.addReply}
-              handleReplyChange={this.handleReply}
+              handleReplyChange={this.handleReplyChange}
               downvote={this.downvote}
               upvote={this.upvote}
               posts={this.state.posts}

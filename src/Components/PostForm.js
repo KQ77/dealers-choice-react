@@ -16,13 +16,11 @@ const PostForm = (props) => {
       </div>
       <select onChange={props.handleChange} name="category" id="category">
         <option value="">--select category--</option>
-        <option value="Q&A">Q & A</option>
-        <option value="animals">Animals</option>
-        <option value="politics">Politics</option>
-        <option value="random">Random</option>
-        <option value="coding">Coding</option>
-        <option value="funny">Funny</option>
-        <option value="movies">Movies</option>
+        {props.categories.map((cat, idx) => (
+          <option kye={idx} value={cat}>
+            {cat}
+          </option>
+        ))}
       </select>
       <label htmlFor="title">
         <span>* </span>title
