@@ -1,6 +1,5 @@
 #banner {
   height: 20rem;
-  background-color: rgb(240, 125, 240);
 }
 
 #banner h1 {
@@ -12,12 +11,24 @@
   left: 20%;
   top: 15%;
 }
-
+.small-banner-img {
+  visibility: hidden;
+}
 @media all and (max-width: 600px) {
   #banner {
-    height: 15rem;
+    height: 8rem;
   }
   #banner h1 {
-    top: 10%;
+    top: 5%;
+    font-size: 1.5rem;
+  }
+  .small-banner-img {
+    visibility: visible;
+    height: inherit;
+    width: 100vw;
+  }
+  .banner-img {
+    height: 0;
+    display: none;
   }
 }

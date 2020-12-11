@@ -39,7 +39,6 @@ input.submit:hover {
 
 @media all and (max-width: 600px) {
   #post-form {
-    margin: 1rem;
     width: 80%;
     display: block;
     border: none;

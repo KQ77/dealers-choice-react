@@ -17,7 +17,7 @@ const Sidebar = (props) => {
         </select>
       </div>
       <button className="new-post-button" onClick={props.toggleForm}>
-        + Add New Post
+        + Add Post
       </button>
     </div>
   );

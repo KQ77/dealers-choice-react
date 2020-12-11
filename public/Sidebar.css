@@ -12,10 +12,13 @@
 
 @media all and (max-width: 600px) {
   .sidebar {
-    height: 5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 100vw;
+    height: 3.5rem;
+    background: white;
+    color: black;
+    font-weight: bold;
   }
 }

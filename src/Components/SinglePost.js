@@ -36,7 +36,7 @@ const SinglePost = (props) => {
             placeholder="add a reply..."
           />
           <button id="reply-button" onClick={() => props.addReply(post)}>
-            Reply
+            Submit
           </button>
           <span
             onClick={() => props.handleReplyClick(post)}
@@ -50,7 +50,7 @@ const SinglePost = (props) => {
             className="delete-button"
             onClick={() => props.deletePost(post)}
           >
-            Delete Post
+            - remove
           </button>
         </div>
       </div>

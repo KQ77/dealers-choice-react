@@ -38,7 +38,9 @@ button {
   }
   .delete-button button {
     font-size: 0.4rem;
-    padding: 0;
+    padding: 0.1rem;
+    width: 3rem;
+    margin: 0.3rem;
   }
   #reply-button {
     width: 20%;
