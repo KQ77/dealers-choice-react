@@ -10,6 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filter: 'all',
       formActive: false,
       posts: [],
       selectedPost: '',
