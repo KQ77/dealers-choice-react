@@ -132,8 +132,12 @@ class App extends React.Component {
         postId: id,
       })
     ).data;
-    posts.sort((a, b) => b.upvotes - a.upvotes);
-    this.setState({ posts: posts, currentReply: '' });
+    // posts.sort((a, b) => b.upvotes - a.upvotes);
+    this.setState((prevState) => ({
+      posts: posts,
+      currentReply: '',
+      selectedPost: { ...prevState.selectedPost },
+    }));
   }
   handleReplyClick(singlePost) {
     this.setState({ selectedPost: singlePost });

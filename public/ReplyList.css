@@ -9,8 +9,9 @@
 
 #single-reply {
   width: 60%;
-  font-family: cursive;
+  font-family: 'Raleway', sans-serif;
   display: flex;
+  font-size: 1.1rem;
 }
 
 #reply {
