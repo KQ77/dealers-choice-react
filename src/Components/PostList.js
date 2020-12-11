@@ -6,7 +6,9 @@ const PostList = (props) => {
   let posts = props.posts;
 
   if (props.filter !== 'all') {
-    posts = posts.filter((post) => post.category === props.filter);
+    posts = posts
+      .filter((post) => post.category === props.filter)
+      .sort((a, b) => b.upvotes - a.upvotes);
   }
 
   return (

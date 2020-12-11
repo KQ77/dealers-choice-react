@@ -62,7 +62,7 @@ class App extends React.Component {
     } else {
       const updatedPosts = (await Axios.post('/api/posts', body)).data;
       console.log(updatedPosts, 'posts returned from submitting posts');
-      updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
+      // updatedPosts.sort((a, b) => b.upvotes - a.upvotes);
       this.setState({
         formError: false,
         formActive: false,
