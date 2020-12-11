@@ -45,9 +45,7 @@ class App extends React.Component {
       this.setState({ posts: posts });
     }
   }
-  // async componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.posts !== )
-  // }
+
   //FORM //
   handleInputChange(e) {
     const { value, name } = e.target;
@@ -120,7 +118,6 @@ class App extends React.Component {
   }
   handleReplyChange(e) {
     let { value, id } = e.target;
-    console.log(id, 'e.target.id -should be same as post.id');
 
     this.setState({ currentReply: value, selectedPostId: id });
   }
@@ -132,11 +129,11 @@ class App extends React.Component {
         postId: id,
       })
     ).data;
-    // posts.sort((a, b) => b.upvotes - a.upvotes);
     this.setState((prevState) => ({
       posts: posts,
       currentReply: '',
       selectedPost: { ...prevState.selectedPost },
+      replyDivActive: true,
     }));
   }
   handleReplyClick(singlePost) {

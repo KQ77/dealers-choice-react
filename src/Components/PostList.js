@@ -4,8 +4,7 @@ import ReplyList from './ReplyList';
 
 const PostList = (props) => {
   let posts = props.posts;
-  console.log(posts, 'posts');
-  console.log(props.filter, 'props.filter');
+
   if (props.filter !== 'all') {
     posts = posts.filter((post) => post.category === props.filter);
   }
@@ -27,19 +26,23 @@ const PostList = (props) => {
             key={idx}
             post={post}
           />
-          <div className="column">
-            {props.selectedPost === post ? (
-              <ReplyList
-                removeReply={props.removeReply}
-                collapse={props.collapse}
-                handleReplyClick={props.handleReplyClick}
-                post={post}
-                replies={post.replies}
-              />
-            ) : (
-              ''
-            )}
-          </div>
+          {!!props.selectedPost.id ? (
+            <div className="column">
+              {props.selectedPost === post ? (
+                <ReplyList
+                  removeReply={props.removeReply}
+                  collapse={props.collapse}
+                  handleReplyClick={props.handleReplyClick}
+                  post={post}
+                  replies={post.replies}
+                />
+              ) : (
+                ''
+              )}
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       ))}
     </>
