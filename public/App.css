@@ -19,7 +19,9 @@ button {
 #all-post-container {
   width: 90%;
 }
-
+body {
+  background-color: #efebdf;
+}
 #main {
   display: flex;
 }

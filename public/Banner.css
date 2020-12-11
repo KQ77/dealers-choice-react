@@ -10,9 +10,18 @@
   font-weight: 200;
   left: 20%;
   top: 15%;
+  z-index: 1;
 }
 .small-banner-img {
   visibility: hidden;
+}
+
+img.banner-img {
+  height: inherit;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100vw;
 }
 @media all and (max-width: 600px) {
   #banner {
