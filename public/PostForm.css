@@ -36,3 +36,16 @@ input.submit:hover {
 .inactive {
   display: none;
 }
+
+@media all and (max-width: 600px) {
+  #post-form {
+    margin: 1rem;
+    width: 80%;
+    display: block;
+    border: none;
+    position: static;
+  }
+  button.submit {
+    width: 30%;
+  }
+}

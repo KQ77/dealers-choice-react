@@ -105,15 +105,8 @@ class App extends React.Component {
 
   async handleFilterSelect(e) {
     const { value } = e.target;
-    //value will equal the category
-    // let posts = (await Axios.get('/api/posts')).data;
 
-    // if (value !== 'all') {
-    //   posts = posts.filter((post) => post.category === value);
-    //   this.setState({ posts: posts });
-    // } else {
     this.setState({ filter: value, posts: [...this.state.posts] });
-    // }
   }
 
   //handling reply section //

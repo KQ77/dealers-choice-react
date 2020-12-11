@@ -23,3 +23,42 @@ button {
 #main {
   display: flex;
 }
+/* media queries */
+@media all and (max-width: 600px) {
+  #main {
+    flex-direction: column;
+  }
+
+  .new-post-button {
+    padding: 0.5rem;
+  }
+  #all-post-container {
+    width: 100vw;
+    margin: 1rem;
+  }
+  .delete-button button {
+    font-size: 0.4rem;
+    padding: 0;
+  }
+  #reply-button {
+    width: 20%;
+  }
+  #single-post textarea {
+    width: 80%;
+  }
+  p.category > span {
+    font-size: 0.8rem;
+  }
+  p.text {
+    font-size: 0.8rem;
+  }
+  p.title {
+    font-size: 1rem;
+  }
+  span.reply {
+    font-size: 0.7rem;
+  }
+  #upvotes span {
+    font-size: 1rem;
+  }
+}

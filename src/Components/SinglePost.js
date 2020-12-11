@@ -40,7 +40,7 @@ const SinglePost = (props) => {
           </button>
           <span
             onClick={() => props.handleReplyClick(post)}
-            className="underline"
+            className="reply underline"
           >
             replies ({post.replies.length})
           </span>

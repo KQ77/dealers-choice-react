@@ -9,3 +9,13 @@
   margin: 2rem auto;
   background-color: rgb(224, 164, 51);
 }
+
+@media all and (max-width: 600px) {
+  .sidebar {
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+}

@@ -12,3 +12,12 @@
   left: 20%;
   top: 15%;
 }
+
+@media all and (max-width: 600px) {
+  #banner {
+    height: 15rem;
+  }
+  #banner h1 {
+    top: 10%;
+  }
+}
